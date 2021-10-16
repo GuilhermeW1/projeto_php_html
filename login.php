@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,24 +40,32 @@
         <div id="login-row" class="row justify-content-center align-items-center">
             <div id="login-column" class="col-md-6">
                 <div id="login-box" class="col-md-12">
-                    <form id="login-form" class="form" action="" method="post">
+                   
+                <form id="login-form" class="form" action="action.php" method="post">
                         <h3 class="text-center text-info">Login</h3>
+
                         <div class="form-group">
-                            <label for="username" class="text-info">Usuário:</label><br>
-                            <input type="text" name="username" id="username" class="form-control" require>
+                            <label for="nome" class="text-info">Usuário:</label><br>
+                            <input type="text" name="nome" id="nome"  class="form-control" placeholder="Usuário" required>
                         </div>
+
                         <div class="form-group">
                             <label for="password" class="text-info">Senha:</label><br>
-                            <input type="text" name="password" id="password" class="form-control" require>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Senha" required>
                         </div>
+
                         <div class="form-group">
+                            <!-- <input type="checkbox" name="teste" value="Checkbox"> -->
                             <label for="remember-me" class="text-info"><span>Lembre me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="Entrar"> 
                         </div>
                         <div id="register-link" class="text-right">
-                            <a href="#" class="text-info">Criar conta</a>
+                            <a href="create.php" rel="next" target="_self" class="text-info">Criar conta</a><br>
+                            
+                            
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
