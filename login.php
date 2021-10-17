@@ -27,11 +27,13 @@
 #login .container #login-row #login-column #login-box #login-form {
   padding: 20px;
 }
+
 #login .container #login-row #login-column #login-box #login-form #register-link {
   margin-top: -85px;
 }
     </style>
 </head>
+
 <body>
 
   <div id="login">
