@@ -1,22 +1,45 @@
-
-
-
-
 <?php
 
+if(isset($_POST['nome']) && isset($_POST['password']) ){
+    $user = $_POST['nome'];
+    $pass = $_POST['password'];
+
+    $conexao = require 'connect.php';
+    $sql = " SELECT usuarios.id, usuarios.nome, senha, tipo.nome as tipo " .
+           " from usuarios , tipo " . 
+           " where usuarios.id_tipo = tipo.id " .
+           " and login = '$user' " .
+           " and senha = md5('$pass') ";  
+
+    $result = $conexao->query($sql);
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+
+    var_dump($row);
+}
+
+echo "<p> sçlakjdf</p>"
+
+
+
+
+/*
 if(isset($_POST["submit"])){
     //esses dois vão pegar o nome e senha inseridos no formulario
     $nome = $_POST["nome"];
     $password = $_POST["password"];
-
-    //echo "<p>Olá, ".$nome."</p>";
-    //echo "<p>Olá, ".$password."</p>"; 
+    echo "<p>Olá, ".$nome."</p>";
+    echo "<p>Olá, ".$password."</p>"; 
 
 
     if ($nome == 'gui' && $password == '123'){
         
         //se o usuario informar corretamente dara uma mensagem de boas vindas
-        echo "<script>alert('Bem vindo')</script>";
+        echo "<script>alert(`Bem vindo ${nome} sua senha é ${password}`)</script>";
+
+        echo"<h1>Usuário: ". $nome . "</h1> <br>";
+        echo"<h1>Senha: ". $password . "</h1> <br>";
+        
+        echo"<button> <a herf='#' onclick='history.go(-1)'> <em>Voltar para página de login</em></a> </button>";
 
     }else{
 
@@ -27,9 +50,10 @@ if(isset($_POST["submit"])){
 
     }
 
+
     
 }
-
+*/
 
 
 ?>
