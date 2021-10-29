@@ -1,0 +1,35 @@
+CREATE TABLE IF NOT EXISTS tipo (
+  `id` INT NOT NULL,
+  `nome` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+
+CREATE TABLE usuarios (
+  `id` INT NOT NULL auto_increment,
+  `nome` VARCHAR(45) NULL,
+  `login` VARCHAR(45) NULL,
+  `senha` VARCHAR(45) NULL,
+  `excluido` TINYINT NULL,
+  `id_tipo` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_usuarios_tipo_idx` (`id_tipo` ASC) ,
+  CONSTRAINT `fk_usuarios_tipo` FOREIGN KEY (`id_tipo`) REFERENCES tipo (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+INSERT INTO tipo values(1,'USUÁRIO');
+INSERT INTO tipo values(2, 'ADMIN');
+
+insert into usuarios values(default, 'GUI','gui', md5('123'),0,2 );
+
+SELECT usuarios.id, usuarios.nome, senha, tipo.nome as tipo
+from usuarios , tipo 
+where usuarios.id_tipo = tipo.id
+and senha =md5('123');
+
+
+s
+

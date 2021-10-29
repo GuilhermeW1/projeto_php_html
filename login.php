@@ -1,14 +1,19 @@
+<?php
+session_start();
+if(isset($_SESSION['nome'])){
+    header('Location: index.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+    <?php include('js.php') ?>
 
     <style>
       body {
@@ -35,6 +40,15 @@
 </head>
 
 <body>
+    <?php 
+    if(isset($_SESSION['erro']) && $_SESSION['erro'] != ""){
+        echo "<script> alert('{$_SESSION['erro']}') </script>";
+        unset($_SESSION['erro']);
+
+    }
+
+
+    ?>
 
   <div id="login">
     <h3 class="text-center text-white pt-5">Login form</h3>
