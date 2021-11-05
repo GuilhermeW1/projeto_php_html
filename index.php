@@ -1,5 +1,10 @@
 <?php
+session_start();
 
+include("actions/verifica_sessao.php");
+//if(isset($_SESSION['nome'])){
+  //  header('Location: index.php');
+//}
 
 ?>
 
@@ -9,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      
-    <?php include('js.php') ?>
+    <?php include('./components/js.php') ?>
     
     <style>
       body {
@@ -17,11 +22,14 @@
    } 
      </style>
   
-    <title>Moda Casual de Luxo</title>
+    <title>Index</title>
 </head>
 <body>
-    <h2>alohha</h2>
-    <a href="#" onclick=confirmar_logout()>sair</a>
+    
+    <?php include('./components/menu.php') ?>
+    <div class="container">
+
+    </div>
     
 </body>
 </html>

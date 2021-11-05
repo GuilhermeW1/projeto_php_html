@@ -6,7 +6,7 @@ if(isset($_POST['nome']) && isset($_POST['password']) ){
     $user = $_POST['nome'];
     $pass = $_POST['password'];
 
-    $conexao = require 'connect.php';
+    $conexao = require '../db/connect.php';
     $sql = " SELECT usuarios.id, usuarios.nome, senha, tipo.nome as tipo " .
            " from usuarios , tipo " . 
            " where usuarios.id_tipo = tipo.id " .
@@ -19,9 +19,10 @@ if(isset($_POST['nome']) && isset($_POST['password']) ){
     if(isset($row['nome'])){
         $_SESSION['id_usuario'] = $row['id'];
         $_SESSION['nome_usuario'] = $row['nome'];
-        header('Location: index.php');
+        header('Location: ../index.php');
     } else {
-        header('Location: login.php');
+        header('Location: ../login.php');
+        
 }
 }
 

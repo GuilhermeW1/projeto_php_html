@@ -39,7 +39,7 @@ Swal.fire({
         }).then((result) => {
     
         if (result.isConfirmed) {
-            document.location.replace('logout.php')
+            document.location.replace('../logout.php')
         } 
 })
     }
