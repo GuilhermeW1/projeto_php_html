@@ -3,7 +3,7 @@
 session_start();
 
 if(isset($_SESSION['nome'])){
-      header('Location: ./index.php');
+      header('Location: index.php');
 }
 
 
@@ -60,7 +60,7 @@ if(isset($_SESSION['nome'])){
             <div id="login-column" class="col-md-6">
                 <div id="login-box" class="col-md-12">
                    
-                <form id="login-form" class="form" action="actions/action.php" method="post">
+                <form id="login-form" class="form" action="actions/action_login.php" method="post">
                         <h3 class="text-center text-info">Login</h3>
 
                         <div class="form-group">

@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 include("actions/verifica_sessao.php");
 //if(isset($_SESSION['nome'])){
   //  header('Location: index.php');
@@ -18,7 +16,7 @@ include("actions/verifica_sessao.php");
     
     <style>
       body {
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+          font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
    } 
      </style>
   
@@ -27,9 +25,22 @@ include("actions/verifica_sessao.php");
 <body>
     
     <?php include('./components/menu.php') ?>
-    <div class="container">
-
+    <div>
+        <p>Home</p>
     </div>
+    <?php 
     
+    if(isset($_SESSION['sucesso'])){
+      echo "<script> mensagem_sucesso('{$_SESSION['erro']}') </script>";
+      unset($_SESSION['erro']);
+
+  }
+
+  if(isset($_SESSION['erro'])){
+    echo "<script> mensagem_erro('{$_SESSION['erro']}') </script>";
+    unset($_SESSION['erro']);
+
+}
+    ?>
 </body>
 </html>

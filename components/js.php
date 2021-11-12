@@ -10,6 +10,10 @@
 
 <script> 
 
+function mensagem_erro(text){
+  
+}
+
     /*
 function confirmar_logout(){
 Swal.fire({

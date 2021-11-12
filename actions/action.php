@@ -2,6 +2,44 @@
 
 session_start();
 
+$tipo = "";
+
+if(isset($_GET['tipo'])){
+    $tipo = $_GET['tipo'];
+}else{
+    header('Location: ../index.php');
+}
+
+$conexao = require '../db/connect.php';
+
+if($tipo == 'cliente'){
+
+
+    //$nome = mysqli_real_escape_string($conexao, $_POST['nome']);
+    //$telefone =  mysqli_real_escape_string($conexao, $_POST['telefone']);
+    //$sql = "insert into clientes values(default, ?,?)";
+
+    $nome = $_POST['nome'];
+    $telefone = $_POST['telefone'];
+
+    $sql = "insert into cliente values(default, ?,?)";
+
+    $stmt = $conexao->prepare($sql);
+
+    $result = $stmt->execute([$nome, $telefone]);
+
+    if($result){
+        $_SESSION['sucesso'] = 'Cliente Adicionada com Sucesso';
+    }else{
+        $_SESSION['erro'] = 'Erro ao adicionar';
+    }
+    header('Location: ../index.php');
+    exit();
+
+}
+
+
+/*
 if(isset($_POST['nome']) && isset($_POST['password']) ){
     $user = $_POST['nome'];
     $pass = $_POST['password'];
@@ -14,6 +52,7 @@ if(isset($_POST['nome']) && isset($_POST['password']) ){
            " and senha = md5('$pass') ";  
 
     $result = $conexao->query($sql);
+    
     $row = $result->fetch(PDO::FETCH_ASSOC);
 
     if(isset($row['nome'])){
@@ -26,42 +65,11 @@ if(isset($_POST['nome']) && isset($_POST['password']) ){
 }
 }
 
-
-
-
-
-/*
-if(isset($_POST["submit"])){
-    //esses dois vão pegar o nome e senha inseridos no formulario
-    $nome = $_POST["nome"];
-    $password = $_POST["password"];
-    echo "<p>Olá, ".$nome."</p>";
-    echo "<p>Olá, ".$password."</p>"; 
-
-
-    if ($nome == 'gui' && $password == '123'){
-        
-        //se o usuario informar corretamente dara uma mensagem de boas vindas
-        echo "<script>alert(`Bem vindo ${nome} sua senha é ${password}`)</script>";
-
-        echo"<h1>Usuário: ". $nome . "</h1> <br>";
-        echo"<h1>Senha: ". $password . "</h1> <br>";
-        
-        echo"<button> <a herf='#' onclick='history.go(-1)'> <em>Voltar para página de login</em></a> </button>";
-
-    }else{
-
-        //Se o usuario informar incorretamente dara uma mensagem de não autenticação
-        echo "<script>alert('Usuario não autenticado')</script>";
-
-        //echo "<p><a href='login.php' rel='prev' target='_self'></a>Voltar</p>"; 
-
-    }
-
-
-    
-}
 */
+
+
+
+
 
 
 ?>
