@@ -14,6 +14,9 @@
         <a class="nav-link" href="./index.php">Home</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="./cidades.php">Cidades</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="./clientes.php">Adicionar</a>
       </li>
       <li class="nav-item">
