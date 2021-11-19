@@ -26,10 +26,11 @@ include("actions/verifica_sessao.php");
     
     <?php include('./components/menu.php') ?>
     <div>
-        <p>Home</p>
+        <!--<p>Home</p>-->
     </div>
     <?php 
     
+    /*
     if(isset($_SESSION['sucesso'])){
       echo "<script> mensagem_sucesso('{$_SESSION['erro']}') </script>";
       unset($_SESSION['erro']);
@@ -41,6 +42,7 @@ include("actions/verifica_sessao.php");
     unset($_SESSION['erro']);
 
 }
+*/
     ?>
 </body>
 </html>

@@ -21,12 +21,16 @@ if($tipo == 'cliente'){
 
     $nome = $_POST['nome'];
     $telefone = $_POST['telefone'];
+    $cidade = $_POST['id_cidade'];
+    
 
-    $sql = "insert into cliente values(default, ?,?)";
+    $sql = "insert into cliente values(default, ?,?, ?)";
 
     $stmt = $conexao->prepare($sql);
 
-    $result = $stmt->execute([$nome, $telefone]);
+    $result = $stmt->execute([$nome, $telefone, $cidade]);
+
+
 
     if($result){
         $_SESSION['sucesso'] = 'Cliente Adicionada com Sucesso';
