@@ -14,6 +14,9 @@ $conexao = require '../db/connect.php';
 
 if($tipo == 'cliente'){
 
+    define('DATE_PBANCO', 'Y/m/d');
+    define('DATA_BANCO_PFRONT', 'd/m/y');
+
 
     //$nome = mysqli_real_escape_string($conexao, $_POST['nome']);
     //$telefone =  mysqli_real_escape_string($conexao, $_POST['telefone']);
@@ -22,15 +25,22 @@ if($tipo == 'cliente'){
     $nome = $_POST['nome'];
     $telefone = $_POST['telefone'];
     $cidade = $_POST['id_cidade'];
+    $data_nascimento = $_POST['data_nascimento'];
     
-
-    $sql = "insert into cliente values(default, ?,?, ?)";
+    //$data_nascimento->format(DATE_PBANCO);
+    /*
+    if($nome = "" || $telefone = "" || $cidade = null || $data_nascimento = null){
+        echo  "<p> algum dos dados esta nullo</p>";
+        header('Location: ../clientes.php');
+    }
+    */
+    $sql = "insert into cliente values(default, ?, ?, ?, ?)";
 
     $stmt = $conexao->prepare($sql);
 
-    $result = $stmt->execute([$nome, $telefone, $cidade]);
+    $result = $stmt->execute([$nome, $telefone, $cidade, $data_nascimento]);
 
-
+    
 
     if($result){
         $_SESSION['sucesso'] = 'Cliente Adicionada com Sucesso';

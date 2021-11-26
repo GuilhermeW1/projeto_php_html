@@ -17,7 +17,10 @@
         <a class="nav-link" href="./cidades.php">Cidades</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./clientes.php">Adicionar</a>
+        <a class="nav-link" href="./bairros.php" >Bairros</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./clientes.php">Clientes</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./actions/logout.php" >Sair</a>

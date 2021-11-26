@@ -1,7 +1,16 @@
 <?php 
 include("actions/verifica_sessao.php");
 $conexao = require 'db/connect.php';
+
+
+if(isset($_GET['id'])){
+    $id_cliente = $_GET['id'];
+    $stmt = $conexao->prepare("select * from cliente where id = '{$id_cliente}'");
+    $stmt->execute();
+    $row_cliente = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -44,7 +53,7 @@ $conexao = require 'db/connect.php';
                         <input type="text" required name="nome_cidade" class="form-control" >
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="row">
                         <label for="telefone">Sigla da cidade</label>
                         <input type="text" name="sigla_cidade" class="form-control" required>
@@ -80,8 +89,13 @@ $conexao = require 'db/connect.php';
                     </div>
 
                 </div>
+                
             </div>
         </form>
+                          
+
+
+        
 
         <div id="a">
             <table class="table">
@@ -90,6 +104,7 @@ $conexao = require 'db/connect.php';
                         <th scope="col">#</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Cidade</th>
+                        <th scope="col">Ações</th>
                         <!--<th scope="col">Acoes</th>-->
                     </tr>
                 </thead>
@@ -103,7 +118,7 @@ $conexao = require 'db/connect.php';
                                     <td>{$row['id']}</td>
                                     <td>{$row['nome']}</td>
                                     <td>{$row['estado']}</td>
-                                    
+                                    <td><a herf='cidades.php?id={$row['id']}'>Editar</a> </td>
 
                                   </tr>"
                                 );

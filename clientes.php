@@ -21,12 +21,14 @@ $conexao = require 'db/connect.php';
         <form action="actions/action.php?tipo=cliente" method="POST" >
             
             <div class="row"> 
+               
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nome">Nome</label>
                         <input type="text" required name="nome" class="form-control" >
                     </div>
                 </div>
+                
                 <div class="col-md-6">
                     <div class="row">
                         <label for="telefone">Telefone</label>
@@ -52,6 +54,17 @@ $conexao = require 'db/connect.php';
                     </div>
 
                 </div>
+                
+                <div class="col-md-6">
+                    <div class="row">
+                    <div class="form-group">
+                            <label for="data_nascimento">Data Nascimento</label>
+                            <input type="date" class="form-control" required name="data_nascimento">
+                    </div>
+                    </div>
+
+                </div>
+
                 
                 <div class="col-md-12 mt-3">
                     <div class="submit">
