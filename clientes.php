@@ -37,6 +37,9 @@ $conexao = require 'db/connect.php';
 
                 </div>
 
+                
+
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="cidade">Cidade</label>

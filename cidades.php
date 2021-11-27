@@ -3,12 +3,15 @@ include("actions/verifica_sessao.php");
 $conexao = require 'db/connect.php';
 
 
+$tipo = "";
+
 if(isset($_GET['id'])){
-    $id_cliente = $_GET['id'];
-    $stmt = $conexao->prepare("select * from cliente where id = '{$id_cliente}'");
+    $id_cidade = $_GET['id'];
+    $stmt = $conexao->prepare("select * from cidades where id = '{$id_cidade}'");
     $stmt->execute();
-    $row_cliente = $stmt->fetch(PDO::FETCH_ASSOC);
+    $row_cidade = $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
 ?>
 
 
@@ -43,60 +46,80 @@ if(isset($_GET['id'])){
 
     <main>
         <h1>Adicionar cidade</h1>
-
+        <div class="container"> 
         <form action="actions/action_cidade.php" method="POST" >
+            
             
             <div class="row"> 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="nome">Nome Da Cidade</label>
-                        <input type="text" required name="nome_cidade" class="form-control" >
+                        <input type="text" required name="nome_cidade" class="form-control" value="<?php if(isset($_GET['id'])) {echo $row_cidade['nome']; }else{echo "";} ?>" >
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row">
                         <label for="telefone">Sigla da cidade</label>
-                        <input type="text" name="sigla_cidade" class="form-control" required>
+                        <input type="text" name="sigla_cidade" class="form-control" required value="<?php if(isset($_GET['id'])) { ;echo $row_cidade['sigla_estado']; }else{echo "";} ?>">
                     </div>
 
                 </div>
-                <!--
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="cidade">Cidade</label>
-                        <select name="id_cidade" class="form-control">
-                        <option value=0>Selecione..</option>
-                        
-                        <?php
-                        /*
-                            $stmt = $conexao->prepare("select id, nome from cidades order by nome");
-                            $stmt->execute();
-                            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                                echo ("<option value={$row['id']} > {$row['nome']}</option>");
-                            }
-                            */
-                        ?>
-                        
-                        </select>
-                    </div>
-
-                </div>
-                -->
                 
-                <div class="col-md-12 mt-3">
-                    <div class="submit">
-                        <input type="submit" name="submit" class="btn btn-info btn-md" value="Cadastrar"> 
+                <!-- aqui vai o id do cara selecionado e vai mandar la pro actions cidadde onde tem que 
+                    validar se ta preenchido ou nao o id  -->
+                
+                    <div class="col-md-6" hidden>
+                        <div class="row">
+                            <label for="id_cidade">Sigla da cidade</label>
+                            <input type="text" name="id_cidade" class="form-control" value="<?php if(isset($_GET['id'])) {echo $row_cidade['id']; }else{echo "";} ?>">
                     </div>
 
-                </div>
+                    </div>
+
+                    <?php 
+                    if(isset($_GET['id'])){
+                        /*se a tela for carregada com um id definido no editar*/
+                        echo ("
+                            <div class='col-md-1 mt-3'>
+                                <div class='submit'>
+                                    <input type='submit' name='submit' class='btn btn-info btn-md' value='Salvar'  > 
+                                </div>
+
+                            </div>
+                        ");
+                        
+                        echo ("
+                            <div class='col-md-1 mt-3'>
+                                <div class='submit'>
+                                <a href='cidades.php' class='btn btn-info btn-md'>Cancelar</a>
+                                </div>
+
+                            </div>
+                        ");
+                    /*se a tela for carregada sem um id definido pelo editar*/
+                    }else{
+                        echo ("
+                            <div class='col-md-1 mt-3'>
+                                <div class='submit'>
+                                    <input type='submit' name='submit' class='btn btn-info btn-md' value='Cadastrar'> 
+                                </div>
+
+                            </div'
+                        ");
+
+                    }
+                    
+                    ?>
+
                 
             </div>
+        </div>
         </form>
-                          
+        </div>
 
 
         
-
+        <div class="container">  
         <div id="a">
             <table class="table">
                 <thead>
@@ -105,57 +128,35 @@ if(isset($_GET['id'])){
                         <th scope="col">Nome</th>
                         <th scope="col">Cidade</th>
                         <th scope="col">Ações</th>
-                        <!--<th scope="col">Acoes</th>-->
+                      
                     </tr>
                 </thead>
                 <tbody>
 
                     <?php 
-                         $stmt = $conexao->prepare("select id, nome, sigla_estado as estado from cidades order by nome");
-                         $stmt->execute();
-                         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                             echo ("<tr>
+                        $stmt = $conexao->prepare("select id, nome, sigla_estado as estado from cidades order by nome");
+                        $stmt->execute();
+                        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                            echo ("<tr>
                                     <td>{$row['id']}</td>
                                     <td>{$row['nome']}</td>
                                     <td>{$row['estado']}</td>
-                                    <td><a herf='cidades.php?id={$row['id']}'>Editar</a> </td>
+                                    <td> <a href='cidades.php?id={$row['id']}'>Editar</a></td>
+                                    
 
-                                  </tr>"
+                                </tr>"
                                 );
-                         }
+                        }
                     
                     ?>
                             
                     
-                <!--
-                            <td><a class='btn btn-md btn-success' herf='clientes.php?id={$row['id']}'>
-                                    <i class='icon-edit'></i></a><td>
-
-
-
-                <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    -->
+                
                 </tbody>
             </table>
                                             
 
+        </div>
         </div>
 
     </main>

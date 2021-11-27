@@ -27,10 +27,11 @@
     ?>
 
     <h1 id="titulo">Adicionar bairros</h1>
-
+    <div class="container"> 
     <form action="">
         
         <div class="row">
+            
             <div class="col-md-4 ">
                 <div class="form-group">
                     <label for="logradouro" >Logradouro</label>
@@ -67,6 +68,7 @@
 
 
     </form>
+    </div>
 
     
 </body>
