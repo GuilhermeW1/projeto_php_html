@@ -3,7 +3,8 @@
 session_start();
 
 $tipo = "";
-
+$conexao = require '../db/connect.php';
+/*
 if(isset($_GET['tipo'])){
     $tipo = $_GET['tipo'];
 }else{
@@ -33,7 +34,7 @@ if($tipo == 'cliente'){
         echo  "<p> algum dos dados esta nullo</p>";
         header('Location: ../clientes.php');
     }
-    */
+    
     $sql = "insert into cliente values(default, ?, ?, ?, ?)";
 
     $stmt = $conexao->prepare($sql);
@@ -51,6 +52,60 @@ if($tipo == 'cliente'){
     exit();
 
 }
+*/
+
+if(isset($_POST['id'])){
+    $id = $_POST['id'];
+
+}
+
+$nome = $_POST['nome'];
+$telefone = $_POST['telefone'];
+$cidade = $_POST['id_cidade'];
+$data_nascimento = $_POST['data_nascimento'];
+
+
+if(!isset($nome) || $nome =""){
+    $_SESSION['erro'] = "informe o nome do cliente";
+    header('Location: ../index.php');
+}
+
+if(!isset($telefone) || $telefone =""){
+    $_SESSION['erro'] = "informe o telefone do cliente";
+    header('Location: ../index.php');
+}
+if(!isset($cidade) || $cidade =""){
+    $_SESSION['erro'] = "informe a cidade do cliente";
+    header('Location: ../index.php');
+}
+if(!isset($data_nascimento) || $data_nascimento =""){
+    $_SESSION['erro'] = "informe a data de nascimento do cliente";
+    header('Location: ../index.php');
+}
+
+if(!isset($id)){//incluir
+    $sql = "insert into cliente values(default, ?, ?, ?, ?)";
+    $stmt = $conexao->prepare($sql);
+    $result = $stmt->execute([$nome, $telefone, $cidade, $data_nascimento]);
+    
+}else{//alterar
+    $sql = "update cliente  set nome = ?, telefone = ?, data_nascimento = ?, cidade = ? where id = ? ";//tem que ver esse cidade ai se ta puchando o scerto
+    $stmt = $conexao->prepare($sql);
+    $result = $stmt->execute([$nome, $telefone, $data_nascimento, $cidade, $id]);
+
+
+}
+
+if($result){
+    $_SESSION['sucesso'] = 'Cliente Adicionada com Sucesso';
+}else{
+    $_SESSION['erro'] = 'Erro ao adicionar';
+}
+header('Location: ../index.php');
+exit();
+
+
+
 
 
 /*
